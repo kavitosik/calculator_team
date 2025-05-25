@@ -1,3 +1,13 @@
+# calculator_team
+
+# Задачи для команды:
+ - Написание Readme для GitHub (готово)
+ - Написать тёплое приветсивие для новых пользователей
+ - Написать инструкцию в боте, можно сделать через отдельную функцию /instruction
+ - Изучение и внедрение inline-клавиатуры
+ - Возможно добавим бд, но только с одобрением команды
+ - Начальная разработка FSM, возможно изменится на inline-клавиатуру
+
 # # 🧮 **Ultimate Multi-Language Calculator**  
 
 **A simple yet powerful Python calculator with history tracking and multilingual support!**  
@@ -20,15 +30,15 @@
 ### **Installation**  
 1. Clone the repository:  
    ```sh
-   git clone https://github.com/yourusername/python-calculator.git
+   git clone https://github.com/kavitosik/calculator_team.git
    ```  
 2. Navigate to the project folder:  
    ```sh
-   cd python-calculator
+   cd calculator_team
    ```  
 3. Run the calculator:  
    ```sh
-   python calculator.py
+   main.py
    ```  
 
 ---

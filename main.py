@@ -12,7 +12,7 @@ from aiogram.types import Message
 from dotenv import find_dotenv, load_dotenv
 from loguru import logger
 
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv)
 TOKEN = os.getenv("BOT_TOKEN")
 
 dp = Dispatcher()
