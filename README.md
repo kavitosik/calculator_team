@@ -30,15 +30,15 @@
 ### **Installation**  
 1. Clone the repository:  
    ```sh
-   git clone https://github.com/yourusername/python-calculator.git
+   git clone https://github.com/kavitosik/calculator_team.git
    ```  
 2. Navigate to the project folder:  
    ```sh
-   cd python-calculator
+   cd calculator_team
    ```  
 3. Run the calculator:  
    ```sh
-   python calculator.py
+   main.py
    ```  
 
 ---
