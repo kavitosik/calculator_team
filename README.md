@@ -1,1 +1,76 @@
-# calculator_team
+# # 🧮 **Ultimate Multi-Language Calculator**  
+
+**A simple yet powerful Python calculator with history tracking and multilingual support!**  
+
+---
+
+## ✨ **Features**  
+✔ **Basic calculations** – Supports `+`, `-`, `*`, `/`  
+✔ **Multi-language UI** – Choose between **English** 🇬🇧 and **Russian** 🇷🇺  
+✔ **Operation history** – All your calculations are saved!  
+✔ **Team project** – Built by **5 passionate developers** *(well, maybe fewer...)* 😉  
+
+---
+
+## 🚀 **Getting Started**  
+
+### **Prerequisites**  
+- Python 3.x installed  
+
+### **Installation**  
+1. Clone the repository:  
+   ```sh
+   git clone https://github.com/yourusername/python-calculator.git
+   ```  
+2. Navigate to the project folder:  
+   ```sh
+   cd python-calculator
+   ```  
+3. Run the calculator:  
+   ```sh
+   python calculator.py
+   ```  
+
+---
+
+## 🖥 **Usage**  
+1. **Select your language** (`en` for English, `ru` for Russian).  
+2. **Enter your math expression** (e.g., `5 + 3 * 2`).  
+3. **Get the result instantly!**  
+4. **View history** – Check all past calculations before exiting.  
+
+### **Example**  
+```plaintext
+> Select language (en/ru): en  
+> Enter expression: 10 / 2 + 3  
+> Result: 8.0  
+> Continue? (yes/no): yes  
+> Show history? (yes/no): yes  
+> Calculation History:  
+> 10 / 2 + 3 = 8.0  
+> 2 * (4 + 1) = 10  
+```  
+
+---
+
+## 👨‍💻 **Development Team**  
+This project was brought to you by:  
+- **Dev 1** *(The databaser)*  
+- **Dev 2** *(The sigma)*  
+- **Dev 3** *(The Bug Slayer)*  
+- **Dev 4** *(The WOMAN)*  
+- **Dev 5** *(The Coffee Addict)*  
+
+*(Names may or may not be fictional...)*  
+
+---
+
+## 📜 **License**  
+This project is licensed under **MIT License** – Feel free to use, modify, and share!  
+
+---
+
+## 📌 **Tags**  
+`#Python` `#Calculator` `#OpenSource` `#BeginnerFriendly` `#Multilingual`  
+
+🚀 **Happy calculating!** 🔢
