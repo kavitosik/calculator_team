@@ -25,7 +25,7 @@ async def command_start_handler(message: Message) -> None:
 
 
 @dp.message()
-async def echo_handler(message: Message) -> None:
+async def echo_handler(message: Message) -> None: 
     """
     Handler will forward receive a message back to the sender
 
