@@ -7,7 +7,8 @@ from aiogram import Bot, Dispatcher, html, F
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
 from aiogram.filters import CommandStart, Command
-from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove
+from aiogram.types import (Message, ReplyKeyboardMarkup,
+                           KeyboardButton, ReplyKeyboardRemove)
 
 from dotenv import find_dotenv, load_dotenv
 from loguru import logger
@@ -19,7 +20,7 @@ TOKEN = os.getenv("BOT_TOKEN")
 
 dp = Dispatcher()
 
-# Создаем клавиатуру с примерами
+
 examples_keyboard = ReplyKeyboardMarkup(
     keyboard=[
         [
@@ -42,32 +43,35 @@ examples_keyboard = ReplyKeyboardMarkup(
     input_field_placeholder="Выберите пример или введите свой..."
 )
 
+
 def save_query_to_db(user_id: int, username: str, query: str, result: str = None):
     """Save user query to the database"""
     conn = sqlite3.connect("math_bot.db")
     cursor = conn.cursor()
-    
+
     cursor.execute(
         "INSERT INTO query_history (user_id, username, query, result) VALUES (?, ?, ?, ?)",
         (user_id, username, query, result)
     )
-    
+
     conn.commit()
     conn.close()
+
 
 def get_user_history(user_id: int, limit: int = 10):
     """Get user query history"""
     conn = sqlite3.connect("math_bot.db")
     cursor = conn.cursor()
-    
+
     cursor.execute(
         "SELECT query, result, timestamp FROM query_history WHERE user_id = ? ORDER BY timestamp DESC LIMIT ?",
         (user_id, limit)
     )
-    
+
     history = cursor.fetchall()
     conn.close()
     return history
+
 
 @dp.message(CommandStart())
 async def command_start_handler(message: Message) -> None:
@@ -87,16 +91,17 @@ async def command_start_handler(message: Message) -> None:
     )
     await message.answer(welcome_msg, reply_markup=examples_keyboard)
 
+
 @dp.message(Command("history"))
 async def command_history_handler(message: Message) -> None:
     """Handler for /history command"""
     user_id = message.from_user.id
     history = get_user_history(user_id)
-    
+
     if not history:
         await message.answer("Ваша история запросов пуста.")
         return
-    
+
     history_text = "📚 Ваши последние запросы:\n\n"
     for idx, (query, result, timestamp) in enumerate(history, 1):
         timestamp = datetime.strptime(timestamp, "%Y-%m-%d %H:%M:%S").strftime("%d.%m %H:%M")
@@ -104,8 +109,9 @@ async def command_history_handler(message: Message) -> None:
         if result:
             history_text += f"🔸 Результат: {result}\n"
         history_text += "\n"
-       
+
     await message.answer(history_text)
+
 
 @dp.message(Command("examples"))
 async def command_examples_handler(message: Message) -> None:
@@ -115,6 +121,7 @@ async def command_examples_handler(message: Message) -> None:
         reply_markup=examples_keyboard
     )
 
+
 @dp.message(F.text.lower() == "отключить клавиатуру")
 async def remove_keyboard_handler(message: Message) -> None:
     """Remove reply keyboard"""
@@ -123,25 +130,24 @@ async def remove_keyboard_handler(message: Message) -> None:
         reply_markup=ReplyKeyboardRemove()
     )
 
+
 @dp.message()
 async def handle_math_query(message: Message) -> None:
     """Handle math queries"""
     try:
         query = message.text.strip()
         result = calculate_expression(query)
-        
-        # Сохраняем в базу данных
+
         save_query_to_db(
             user_id=message.from_user.id,
             username=message.from_user.username,
             query=message.text,
             result=result
         )
-        
-        # Форматируем ответ
+
         response = f"🔹 {message.text}\n= {html.bold(result)}"
         await message.answer(response)
-        
+
     except ValueError as e:
         await message.answer(f"Ошибка: {e}\nПожалуйста, используйте только математические выражения.")
     except SyntaxError:
@@ -149,14 +155,14 @@ async def handle_math_query(message: Message) -> None:
     except Exception as e:
         await message.answer(f"Произошла ошибка при вычислении: {e}")
 
+
 async def main() -> None:
     bot = Bot(token=TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
     await dp.start_polling(bot)
 
 if __name__ == "__main__":
     logger.info("Bot starting...")
-    
-    # Ensure database exists
+
     if not os.path.exists("math_bot.db"):
         logger.info("Creating database...")
         conn = sqlite3.connect("math_bot.db")
@@ -173,7 +179,5 @@ if __name__ == "__main__":
         """)
         conn.commit()
         conn.close()
-    
-    asyncio.run(main())
 
-   
+    asyncio.run(main())
