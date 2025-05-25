@@ -7,3 +7,6 @@ __pycache__
 
 # logs
 *.log
+
+# Files
+math_bot.db
