@@ -1,1 +1,1 @@
-print("Привет, ogurz!")
+print("Привет, yablocko!")
