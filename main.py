@@ -208,7 +208,9 @@ async def command_help_handler(message: Message) -> None:
     )
     await message.answer(help_text)
 
-# Остальные обработчики (history, examples) остаются без изменений
+
+@dp.message()
+async def echo_handler(message: Message) -> None: 
 
 @dp.message(F.text.lower() == "помощь")
 async def help_handler(message: Message) -> None:
